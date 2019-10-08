@@ -127,7 +127,7 @@ class ImapLibrary(object):
         `mailNumber` is the index number of the mail to open
         """
         if not self._is_walking_multipart(mailNumber):
-            data = self.imap.fetch(mailNumber, '(RFC822)')[1][0][1]
+            data = self.imap.fetch(mailNumber, '(RFC822)')[1][0][1].decode()
             msg = email.message_from_string(data)
             self._start_walking_multipart(mailNumber, msg)
 
